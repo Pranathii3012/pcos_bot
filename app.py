@@ -14,8 +14,14 @@ from bs4 import BeautifulSoup
 # BOT INITIALIZATION
 # ==========================================
 
-BOT_TOKEN = os.environ.get("TOKEN")
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+if not BOT_TOKEN:
+    raise RuntimeError("BOT_TOKEN environment variable is not set")
+
 bot = telebot.TeleBot(BOT_TOKEN)
+
 
 app = Flask(__name__)
 user_data = {}
